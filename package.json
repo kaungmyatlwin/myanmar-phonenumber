@@ -1,0 +1,21 @@
+{
+  "name": "myanmar-phonenumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "myanmar-phonenumber.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "myanmar",
+    "phone-number",
+    "mpt",
+    "telenor",
+    "ooredoo"
+  ],
+  "author": "Kaung Myat Lwin (dev.kaungmyatlwin@gmail.com)",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  }
+}
