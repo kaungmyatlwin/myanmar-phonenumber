@@ -33,11 +33,11 @@
         if (countryCodeRe.test(phoneNumber)) {
           var doubleCountryCodeRe = /^\+?95950?9\d{7,9}$/;
           if (doubleCountryCodeRe.test(phoneNumber)) {
-            phoneNumber = phoneNumber.replace('9595', '95');
+            phoneNumber = phoneNumber.replace(/9595/, '95');
           }
           var zeroBeforeAreaCodeRe = /^\+?9509\d{7,9}$/;
           if (zeroBeforeAreaCodeRe.test(phoneNumber)) {
-            phoneNumber = phoneNumber.replace('9509', '959');
+            phoneNumber = phoneNumber.replace(/9509/, '959');
           }
         }
         return phoneNumber;

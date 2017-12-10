@@ -14,6 +14,14 @@ describe('Sanitize input: ', function(){
   it('should remove dashes from 09-978-412-34-5', function(){
     assert.equal(myanmarPhoneNumber.sanitizeInput('09-978-412-34-5'), '09978412345');
   });
+
+  it('should remove double country code', function(){
+    assert.equal(myanmarPhoneNumber.sanitizeInput('+95959978412345'), '+959978412345');
+  });
+
+  it('should remove zero before area code', function(){
+    assert.equal(myanmarPhoneNumber.sanitizeInput('+9509978412345'), '+959978412345');
+  });
 });
 
 describe('Valid Myanmar Phone: ', function(){
