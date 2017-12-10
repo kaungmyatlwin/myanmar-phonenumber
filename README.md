@@ -4,6 +4,12 @@ Credit: [Original script (Python)](https://github.com/Melomap/mm_phonenumber)
 
 ### Installation
 
+If you have NPM installed,
+
+`npm i myanmar-phonenumber`
+
+Or if you're using for browser, [download](https://raw.githubusercontent.com/kaungmyatlwin/myanmar-phonenumber-js/master/myanmar.phonenumber.js) it and include in your document as shown below.
+
 ### Usage
 
 In browser
