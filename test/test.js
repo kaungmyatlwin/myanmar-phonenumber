@@ -1,5 +1,5 @@
 var assert = require('assert');
-var myanmarPhoneNumber = require('../myanmar.phonenumber.js');
+var myanmarPhoneNumber = require('../myanmar-phonenumber.js');
 
 describe('Sanitize input: ', function(){
 
@@ -36,7 +36,7 @@ describe('Valid Myanmar Phone: ', function(){
 describe('Operator names: ', function () {
 
   it('should return Ooredoo', function () {
-    var opName = myanmarPhoneNumber.getTelecomName('09978412345');
+    var opName = myanmarPhoneNumber.getTelecomName('09958412345');
     assert.equal(opName, 'Ooredoo');
   });
 
