@@ -10,6 +10,10 @@ If you have NPM installed,
 
 Or if you're using for browser, [download](https://raw.githubusercontent.com/kaungmyatlwin/myanmar-phonenumber-js/master/myanmar.phonenumber.js) it and include in your document as shown below.
 
+For CDN users, include the following URL.
+
+`https://unpkg.com/myanmar-phonenumber`
+
 ### Usage
 
 In browser
