@@ -50,6 +50,11 @@ describe('Operator names: ', function () {
     assert.equal(opName, 'MPT');
   });
 
+  it('should return MyTel', function () {
+    var opName = myanmarPhoneNumber.getTelecomName('09690000966');
+    assert.equal(opName, 'MyTel');
+  });
+
   it('should return Unknown', function () {
     var opName = myanmarPhoneNumber.getTelecomName('0912345678');
     assert.equal(opName, 'Unknown');
