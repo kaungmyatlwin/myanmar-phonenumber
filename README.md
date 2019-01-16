@@ -23,6 +23,7 @@ In browser
 <script>
     console.log(myanmarPhoneNumber.getTelecomName('09978412345')); // returns Ooredoo
     console.log(myanmarPhoneNumber.getPhoneNetworkType('09978412345')); // returns GSM
+    console.log(myanmarPhoneNumber.isValidMMPhoneNumber('09978412345')); // returns true if it meets Myanmar Phone Number conditions
 </script>
 ```
 
@@ -32,4 +33,5 @@ In Node environment
 var myanmarPhoneNumber = require('/path/to/myanmar.phonenumber.js');
 console.log(myanmarPhoneNumber.getTelecomName('09978412345')); // returns Ooredoo
 console.log(myanmarPhoneNumber.getPhoneNetworkType('09978412345')); // returns GSM
+console.log(myanmarPhoneNumber.isValidMMPhoneNumber('09978412345')); // returns true if it meets Myanmar Phone Number conditions
 ```
