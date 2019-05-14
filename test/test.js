@@ -2,7 +2,7 @@ var assert = require('assert');
 var myanmarPhoneNumber = require('../myanmar-phonenumber.js')
 
 describe('Normalize input: ', function() {
-  it('should return +959784123456 09784123456', function() {
+  it('should return +959784123456 to 09784123456', function() {
     assert.equal(myanmarPhoneNumber.normalizeInput('+959784123456'), '09784123456');
   });
 
