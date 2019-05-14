@@ -40,7 +40,7 @@
     };
 
     // Removes trailing spaces, dashes and double country codes
-    function sanitizeInput(phoneNumber) {
+    myanmarPhoneNumber.sanitizeInput = function (phoneNumber) {
       phoneNumber = phoneNumber.trim();
       phoneNumber = phoneNumber.replace(/[- )(]/g,'')
 
@@ -65,7 +65,7 @@
       if (!phoneNumber) return new Error('Please include phoneNumber parameter.');
 
       var possibleCases = /(09-)|(\+959)|(09\s)|(959)|(09\.)/
-      var sanitizedNumber = sanitizeInput(phoneNumber);
+      var sanitizedNumber = this.sanitizeInput(phoneNumber);
 
       // spaces, dup cases
       if(possibleCases.test(sanitizedNumber)) {
