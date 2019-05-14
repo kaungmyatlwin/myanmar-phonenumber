@@ -1,6 +1,6 @@
 {
   "name": "myanmar-phonenumber",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Javascript module port (for browsers and node) to check valid myanmar mobile numbers, get mobile operator's name, sanitize mobile numbers and get mobile network types.",
   "main": "myanmar-phonenumber.js",
   "scripts": {
