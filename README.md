@@ -22,7 +22,7 @@ In browser
 <script src="path/to/myanmar.phonenumber.js"></script>
 <script>
     console.log(myanmarPhoneNumber.normalizeInput('+၉၅၉၇၈၄၁၂၃၄၅၆')); // returns 09784123456
-    console.log(myanmarPhoneNumber.normalizeInput('+၉၅၉၇၈၄၁၂၃၄၅၆')); // returns 09784123456
+    console.log(myanmarPhoneNumber.normalizeInput('+959784123456')); // returns 09784123456
     console.log(myanmarPhoneNumber.getTelecomName('09978412345')); // returns Ooredoo
     console.log(myanmarPhoneNumber.getPhoneNetworkType('09978412345')); // returns GSM
     console.log(myanmarPhoneNumber.isValidMMPhoneNumber('09978412345')); // returns true if it meets Myanmar Phone Number conditions
