@@ -1,30 +1,50 @@
 var assert = require('assert');
-var myanmarPhoneNumber = require('../myanmar-phonenumber.js');
+var myanmarPhoneNumber = require('../myanmar-phonenumber.js')
 
-describe('Sanitize input: ', function(){
+describe('Normalize input: ', function() {
+  it('should return +959784363454 to 09784123456', function() {
+    assert.equal(myanmarPhoneNumber.normalizeInput('+959784123456'), '09784123456');
+  });
+
+  it('should return ဝ၉၇၈၄၁၂၃၄၅၆ to 09784123456', function() {
+    assert.equal(myanmarPhoneNumber.normalizeInput('၀၉၇၈၄၁၂၃၄၅၆'), '09784123456');
+  });
+
+  it('should return ၀၉ ၇၈၄၁၂၃၄၅၆ to 09784123456', function() {
+    assert.equal(myanmarPhoneNumber.normalizeInput('၀၉ ၇၈၄၁၂၃၄၅၆'), '09784123456');
+  });
+
+  it('should return +၉၅၉၇၈၄၁၂၃၄၅၆ to 09784123456', function() {
+    assert.equal(myanmarPhoneNumber.normalizeInput('+၉၅၉၇၈၄၁၂၃၄၅၆'), '09784123456');
+  });
+
+  it('should return ၀၉.၅၁၁၂၃၄၅', function(){
+    assert.equal(myanmarPhoneNumber.normalizeInput('၀၉.၅၁၁၂၃၄၅'), '095112345');
+  });
 
   it('should strip white spaces from 09978412345', function () {
-    assert.equal(myanmarPhoneNumber.sanitizeInput('  09978412345  '), '09978412345');
+    assert.equal(myanmarPhoneNumber.normalizeInput('  09978412345  '), '09978412345');
   });
 
   it('should remove spaces from 09 978 412 345', function(){
-    assert.equal(myanmarPhoneNumber.sanitizeInput('09 978 412 345'), '09978412345');
+    assert.equal(myanmarPhoneNumber.normalizeInput('09 978 412 345'), '09978412345');
   });
 
   it('should remove dashes from 09-978-412-34-5', function(){
-    assert.equal(myanmarPhoneNumber.sanitizeInput('09-978-412-34-5'), '09978412345');
+    assert.equal(myanmarPhoneNumber.normalizeInput('09-978-412-34-5'), '09978412345');
   });
 
   it('should remove double country code', function(){
-    assert.equal(myanmarPhoneNumber.sanitizeInput('+95959978412345'), '+959978412345');
+    assert.equal(myanmarPhoneNumber.normalizeInput('+95959978412345'), '09978412345');
   });
 
   it('should remove zero before area code', function(){
-    assert.equal(myanmarPhoneNumber.sanitizeInput('+9509978412345'), '+959978412345');
+    assert.equal(myanmarPhoneNumber.normalizeInput('+9509978412345'), '09978412345');
   });
+
 });
 
-describe('Valid Myanmar Phone: ', function(){
+describe('Valid Myanmar Phone: ', function() {
   it('should return true', function(){
     assert.equal(myanmarPhoneNumber.isValidMMPhoneNumber('09978412345'), true);
   });
