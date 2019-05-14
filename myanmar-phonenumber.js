@@ -2,6 +2,20 @@
 // https://gist.github.com/CrocoDillon/9990078
 (function (global) {
     'use strict';
+
+    var myanmarNumbers = {
+      "၀": 0,
+      "၁": 1,
+      "၂": 2,
+      "၃": 3,
+      "၄": 4,
+      "၅": 5,
+      "၆": 6,
+      "၇": 7,
+      "၈": 8,
+      "၉": 9,
+    };
+
     var myanmarPhoneNumber = {
       OPERATOR_REGEX: {
         ooredoo: /^(09|\+?959)9(5|7|6)\d{7}$/,
@@ -25,33 +39,58 @@
       }
     };
 
-    myanmarPhoneNumber.sanitizeInput = function (phoneNumber) {
-      if (phoneNumber) {
-        phoneNumber = phoneNumber.trim();
-        phoneNumber = phoneNumber.replace(/[- )(]/g,'')
+    // Removes trailing spaces, dashes and double country codes
+    function sanitizeInput(phoneNumber) {
+      phoneNumber = phoneNumber.trim();
+      phoneNumber = phoneNumber.replace(/[- )(]/g,'')
 
-        var countryCodeRe = /^\+?950?9\d+$/;
+      var countryCodeRe = /^\+?950?9\d+$/;
 
-        if (countryCodeRe.test(phoneNumber)) {
-          var doubleCountryCodeRe = /^\+?95950?9\d{7,9}$/;
-          if (doubleCountryCodeRe.test(phoneNumber)) {
-            phoneNumber = phoneNumber.replace(/9595/, '95');
-          }
-          var zeroBeforeAreaCodeRe = /^\+?9509\d{7,9}$/;
-          if (zeroBeforeAreaCodeRe.test(phoneNumber)) {
-            phoneNumber = phoneNumber.replace(/9509/, '959');
-          }
+      if (countryCodeRe.test(phoneNumber)) {
+        var doubleCountryCodeRe = /^\+?95950?9\d{7,9}$/;
+        if (doubleCountryCodeRe.test(phoneNumber)) {
+          phoneNumber = phoneNumber.replace(/9595/, '95');
         }
-        return phoneNumber;
+        var zeroBeforeAreaCodeRe = /^\+?9509\d{7,9}$/;
+        if (zeroBeforeAreaCodeRe.test(phoneNumber)) {
+          phoneNumber = phoneNumber.replace(/9509/, '959');
+        }
       }
+      return phoneNumber;
     };
 
-    myanmarPhoneNumber.isValidMMPhoneNumber = function (phoneNumber) {
-      if (phoneNumber) {
-        phoneNumber = this.sanitizeInput(phoneNumber);
-        var myanmarPhoneRe = /^(09|\+?950?9|\+?95950?9)\d{7,9}$/;
-        if (myanmarPhoneRe.test(phoneNumber)) return true;
+    // converts myanmar numbers, strips possible user errors
+    // eg 09-[number], 09 [number], typing in Myanmar Numerics
+    myanmarPhoneNumber.normalizeInput = function (phoneNumber) {
+      if (!phoneNumber) return new Error('Please include phoneNumber parameter.');
+
+      var possibleCases = /(09-)|(\+959)|(09\s)|(959)|(09\.)/
+      var sanitizedNumber = sanitizeInput(phoneNumber);
+
+      // spaces, dup cases
+      if(possibleCases.test(sanitizedNumber)) {
+        return sanitizedNumber.replace(possibleCases, '09');
       }
+
+      // Myanmar Number case
+      if (/[၀-၉]/.test(sanitizedNumber)) {
+        return sanitizedNumber
+          .split('')
+          .map(function(num) {
+            return myanmarNumbers[num];
+          })
+          .join('')
+          .replace(possibleCases, '09');
+      }
+
+      return sanitizedNumber;
+    }
+
+    myanmarPhoneNumber.isValidMMPhoneNumber = function (phoneNumber) {
+      if (!phoneNumber) return new Error('Please include phoneNumber parameter.');
+      phoneNumber = this.normalizeInput(phoneNumber);
+      var myanmarPhoneRe = /^(09|\+?950?9|\+?95950?9)\d{7,9}$/;
+      if (myanmarPhoneRe.test(phoneNumber)) return true;
       return false;
     };
 
@@ -61,7 +100,7 @@
       var operatorName = operators.UNKNOWN;
 
       if (phoneNumber && this.isValidMMPhoneNumber(phoneNumber)) {
-        phoneNumber = this.sanitizeInput(phoneNumber);
+        phoneNumber = this.normalizeInput(phoneNumber);
         if (operatorRe.ooredoo.test(phoneNumber)) {
           operatorName = operators.OOREDOO;
         } else if (operatorRe.telenor.test(phoneNumber)) {
@@ -83,7 +122,7 @@
 
 
       if (phoneNumber && this.isValidMMPhoneNumber(phoneNumber)) {
-        phoneNumber = this.sanitizeInput(phoneNumber);
+        phoneNumber = this.normalizeInput(phoneNumber);
         if (operatorRe.ooredoo.test(phoneNumber) || operatorRe.telenor.test(phoneNumber) || operatorRe.mytel.test(phoneNumber)) {
           networkType = this.NETWORK_TYPE.GSM;
         } else if (operatorRe.mpt.test(phoneNumber)) {
@@ -103,7 +142,7 @@
         }
       }
     return networkType;
-  };
+    };
 
   if (typeof define === 'function' && define.amd) {
     define(function () {
