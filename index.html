@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Myanmar Phone Number</title>
+
+    <style>
+      .primary-card {
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body style="padding: 50px;">
+    <h3 class="text-center">Validate Phone Number</h3>
+    <div class="row justify-content-center">
+      <div class="col-6 card primary-card">
+        <div class="input-group">
+          <input type="text" placeholder="eg: 09784312345" class="form-control" id="js-input" />
+        </div>
+        <div class="input-group mt-2">
+          <button
+            id="js-btn-test"
+            class="btn btn-dark" style="margin: 0 auto;">Test</button>
+        </div>
+        <div>
+          <div>
+            Is Myanmar Phone Number - <span id="js-isValid" class="text-capitalize"></span>
+          </div>
+          <div>
+            Network Type - <span id="js-networkType" class="text-capitalize"></span>
+          </div>
+          <div>
+            Telecom Name - <span id="js-telecomName" class="text-capitalize"></span>
+          </div>
+        </div>
+        <div class="mt-2">
+          <div class="bg-warning p-2">
+            <b>Caution: This is a regex rule based library. Invalid numbers (ones that doesn't exist in Telecom's registry) can still appear True if given value and the regex condition is met.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/myanmar-phonenumber"></script>
+
+    <script>
+      $('#js-btn-test').click(function(e) {
+        e.preventDefault();
+        var inputVal = $('#js-input').val();
+        if (!inputVal) return;
+
+        var isMyanmarPhoneNumber = myanmarPhoneNumber.isValidMMPhoneNumber(inputVal);
+        var networkType = myanmarPhoneNumber.getTelecomName(inputVal);
+        var telecomName = myanmarPhoneNumber.getTelecomName(inputVal);
+
+
+        $('#js-isValid').text(isMyanmarPhoneNumber);
+        $('#js-networkType').text(networkType);
+        $('#js-telecomName').text(telecomName);
+      });
+    </script>
+  </body>
+</html>
