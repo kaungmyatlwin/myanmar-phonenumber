@@ -1,6 +1,7 @@
 Javascript module port (for browsers and node) of [mm_phonenumber](https://github.com/Melomap/mm_phonenumber) to check valid myanmar mobile numbers, get mobile operator's name, sanitize mobile numbers and get mobile network types.
 
 Credit: [Original script (Python)](https://github.com/Melomap/mm_phonenumber)
+
 Demo: [Web Demo](https://kaungmyatlwin.github.io/myanmar-phonenumber)
 
 ### Installation
