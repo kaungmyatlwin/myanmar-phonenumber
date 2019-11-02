@@ -62,7 +62,7 @@
         if (!inputVal) return;
 
         var isMyanmarPhoneNumber = myanmarPhoneNumber.isValidMMPhoneNumber(inputVal);
-        var networkType = myanmarPhoneNumber.getTelecomName(inputVal);
+        var networkType = myanmarPhoneNumber.getPhoneNetworkType(inputVal);
         var telecomName = myanmarPhoneNumber.getTelecomName(inputVal);
 
 
