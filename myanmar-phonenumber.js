@@ -64,7 +64,7 @@
     myanmarPhoneNumber.normalizeInput = function (phoneNumber) {
       if (!phoneNumber) return new Error('Please include phoneNumber parameter.');
 
-      var possibleCases = /(09-)|(\+959)|(09\s)|(959)|(09\.)/
+      var possibleCases = /^((09-)|(\+959)|(09\s)|(959)|(09\.))/
       var sanitizedNumber = this.sanitizeInput(phoneNumber);
 
       // spaces, dup cases
