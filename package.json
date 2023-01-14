@@ -4,7 +4,8 @@
   "description": "Javascript module port (for browsers and node) to check valid myanmar mobile numbers, get mobile operator's name, sanitize mobile numbers and get mobile network types.",
   "main": "myanmar-phonenumber.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:watch": "mocha --watch"
   },
   "keywords": [
     "myanmar",
@@ -20,6 +21,6 @@
   "author": "Kaung Myat Lwin (dev.kaungmyatlwin@gmail.com)",
   "license": "Apache 2.0",
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "mocha": "^10.2.0"
   }
 }
