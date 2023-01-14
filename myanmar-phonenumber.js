@@ -43,6 +43,10 @@
 
     // Removes trailing spaces, dashes and double country codes
     myanmarPhoneNumber.sanitizeInput = function (phoneNumber) {
+      if (!phoneNumber || phoneNumber.length === 0) {
+        return new Error('Please include phoneNumber parameter.');
+      }
+
       phoneNumber = phoneNumber.trim();
       phoneNumber = phoneNumber.replace(/[- )(]/g,'')
 
@@ -64,10 +68,8 @@
     // converts myanmar numbers, strips possible user errors
     // eg 09-[number], 09 [number], typing in Myanmar Numerics
     myanmarPhoneNumber.normalizeInput = function (phoneNumber) {
-      if (!phoneNumber) return new Error('Please include phoneNumber parameter.');
-
-      var possibleCases = /^((09-)|(\+959)|(09\s)|(959)|(09\.))/
       var sanitizedNumber = this.sanitizeInput(phoneNumber);
+      var possibleCases = /^((09-)|(\+959)|(09\s)|(959)|(09\.))/
 
       // spaces, dup cases
       if(possibleCases.test(sanitizedNumber)) {
@@ -89,11 +91,9 @@
     }
 
     myanmarPhoneNumber.isValidMMPhoneNumber = function (phoneNumber) {
-      if (!phoneNumber) return new Error('Please include phoneNumber parameter.');
       phoneNumber = this.normalizeInput(phoneNumber);
       var myanmarPhoneRe = /^(09|\+?950?9|\+?95950?9)\d{7,9}$/;
-      if (myanmarPhoneRe.test(phoneNumber)) return true;
-      return false;
+      return myanmarPhoneRe.test(phoneNumber);
     };
 
     myanmarPhoneNumber.getTelecomName = function (phoneNumber) {
@@ -124,7 +124,6 @@
     myanmarPhoneNumber.getPhoneNetworkType = function (phoneNumber) {
       var networkType = this.NETWORK_TYPE.UNKNOWN;
       var operatorRe = this.OPERATOR_REGEX;
-
 
       if (phoneNumber && this.isValidMMPhoneNumber(phoneNumber)) {
         phoneNumber = this.normalizeInput(phoneNumber);
