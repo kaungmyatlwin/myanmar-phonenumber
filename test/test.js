@@ -1,6 +1,17 @@
 var assert = require('assert');
 var myanmarPhoneNumber = require('../myanmar-phonenumber.js')
 
+describe('Error throwing: ', function() {
+  it('should throw an error when empty string is passed', () => {
+    assert.throws(() => myanmarPhoneNumber.sanitizeInput('  '), Error)
+    assert.throws(() => myanmarPhoneNumber.sanitizeInput(''), Error)
+  })
+
+  it('should throw an error when "undefined" is passed', () => {
+    assert.throws(myanmarPhoneNumber.sanitizeInput, Error)
+  })
+});
+
 describe('Normalize input: ', function() {
   it('should return +959784123456 to 09784123456', function() {
     assert.equal(myanmarPhoneNumber.normalizeInput('+959784123456'), '09784123456');
