@@ -75,6 +75,11 @@ describe('Operator names: ', function () {
     assert.equal(opName, 'MyTel');
   });
 
+  it('should return MEC', function(){
+    var opName = myanmarPhoneNumber.getTelecomName('09312345678');
+    assert.equal(opName, 'MEC');
+  })
+
   it('should return Unknown', function () {
     var opName = myanmarPhoneNumber.getTelecomName('0912345678');
     assert.equal(opName, 'Unknown');
