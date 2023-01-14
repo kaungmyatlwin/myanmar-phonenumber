@@ -43,11 +43,16 @@
 
     // Removes trailing spaces, dashes and double country codes
     myanmarPhoneNumber.sanitizeInput = function (phoneNumber) {
-      if (!phoneNumber || phoneNumber.length === 0) {
+      phoneNumber = phoneNumber.trim();
+
+      if (phoneNumber.length === 0) {
+        return new Error('Phone number is empty.');
+      }
+
+      if (!phoneNumber) {
         return new Error('Please include phoneNumber parameter.');
       }
 
-      phoneNumber = phoneNumber.trim();
       phoneNumber = phoneNumber.replace(/[- )(]/g,'')
 
       var countryCodeRe = /^\+?950?9\d+$/;
