@@ -77,7 +77,7 @@ describe('Operator names: ', function () {
   });
 
   it('should return MPT', function () {
-    var opName = myanmarPhoneNumber.getTelecomName('09420012345');
+    var opName = myanmarPhoneNumber.getTelecomName('959890743931');
     assert.equal(opName, 'MPT');
   });
 
