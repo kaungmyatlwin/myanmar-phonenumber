@@ -41,3 +41,7 @@ console.log(myanmarPhoneNumber.getTelecomName('09978412345')); // returns Ooredo
 console.log(myanmarPhoneNumber.getPhoneNetworkType('09978412345')); // returns GSM
 console.log(myanmarPhoneNumber.isValidMMPhoneNumber('09978412345')); // returns true if it meets Myanmar Phone Number conditions
 ```
+
+### TypeScript
+
+For the usage with TypeScript, refer to [@types/myanmar-phonenumber](https://www.npmjs.com/package/@types/myanmar-phonenumber). Big thanks to [@HtetOoWaiYan](https://github.com/HtetOoWaiYan) for the contribution on DefinitelyTyped repo.
